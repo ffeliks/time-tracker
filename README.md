@@ -13,9 +13,6 @@
 ```bash
 # development mode
 > yarn run start
-
-# production mode
-> yarn run start:prod
 ```
 
 The application will then be available on http://localhost:3000
@@ -52,7 +49,12 @@ The application will then be available on http://localhost:3000
     "password": "secret"
 }
 ```
-* Response: HTTP status code 200
+* Example response:
+```bash
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU5NDIzNTMwMywiZXhwIjoxNTk0MjM4OTAzfQ.nbDcUwG38u94p9uUlC01mTT1LUvTNL5LFFFFyjLUBkk"
+}
+```
 ## Timer list
 * Authentication: Bearer token
 * Example request:

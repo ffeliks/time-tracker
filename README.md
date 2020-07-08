@@ -35,8 +35,8 @@ The application will then be available on http://localhost:3000
 # POST /auth/signup
 
 {
-    "email": "feliks.toomsoo2@gmail.com",
-    "password": "secret2"
+    "email": "john.doe@example.com",
+    "password": "secret"
 }
 ```
 * Response: HTTP status code 201
@@ -48,8 +48,8 @@ The application will then be available on http://localhost:3000
 # POST /auth/signin
 
 {
-    "email": "feliks.toomsoo2@gmail.com",
-    "password": "secret2"
+    "email": "john.doe@example.com",
+    "password": "secret"
 }
 ```
 * Response: HTTP status code 200

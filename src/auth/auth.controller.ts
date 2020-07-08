@@ -5,6 +5,7 @@ import {
   Res,
   UsePipes,
   ValidationPipe,
+  HttpCode,
 } from '@nestjs/common';
 import { SignUpDto } from './dto/signup.dto';
 import { AuthService } from './auth.service';
@@ -28,6 +29,7 @@ export class AuthController {
 
   @Post('/signin')
   @UsePipes(ValidationPipe)
+  @HttpCode(200)
   async signIn(
     @Body() payload: SignInDto,
     @Res() res: Response,

@@ -1,75 +1,102 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
+* [Node](https://nodejs.org/)
+* [Yarn](https://yarnpkg.com/)
 
 ## Installation
-
 ```bash
-$ npm install
+> git clone https://github.com/ffeliks/time-tracker
+> cd time-tracker/
+> yarn install
 ```
 
 ## Running the app
-
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
+# development mode
+> yarn run start
 
 # production mode
-$ npm run start:prod
+> yarn run start:prod
 ```
 
-## Test
+The application will then be available on http://localhost:3000
 
+## API Endpoints
+ * [POST /auth/signup](#signup)
+ * [POST /auth/signin](#signin)
+ * [GET /timer/list](#timer-list)
+ * [POST /timer/start](#timer-start)
+ * [POST /timer/stop](#timer-stop)
+ * [PUT /timer/update/:id](#timer-entry-update)
+
+## Signup
+* Authentication: none
+* Example request:
 ```bash
-# unit tests
-$ npm run test
+# POST /auth/signup
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+{
+    "email": "feliks.toomsoo2@gmail.com",
+    "password": "secret2"
+}
 ```
+* Response: HTTP status code 201
 
-## Support
+## Signin
+* Authentication: none
+* Example request:
+```bash
+# POST /auth/signin
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+{
+    "email": "feliks.toomsoo2@gmail.com",
+    "password": "secret2"
+}
+```
+* Response: HTTP status code 200
+## Timer list
+* Authentication: Bearer token
+* Example request:
+```bash
+GET /timer/list
+```
+* Example response:
+```bash
 
-## Stay in touch
+[
+    {
+        "id": 1,
+        "title": "Working on task X",
+        "startTime": "2020-07-08T19:00:00",
+        "endTime": "2020-07-08T20:00:00",
+        "duration": 3600
+    }
+]
+```
+## Timer start
+* Authentication: Bearer token
+* Example request:
+```bash
+POST /timer/start
+```
+* Response: HTTP status code 201
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Timer stop
+* Authentication: Bearer token
+* Example request:
+```bash
+POST /timer/stop
+```
+* Response: HTTP status code 202
+## Timer entry update
+* Authentication: Bearer token
+* Example request:
+```bash
+# PUT /timer/update/1
 
-## License
-
-  Nest is [MIT licensed](LICENSE).
+{
+    "title": "Updated it 2",
+    "startTime": "2020-07-07 09:30",
+    "endTime": "2020-07-07 10:30"
+}
+```
+* Response: HTTP status code 200

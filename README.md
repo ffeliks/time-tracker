@@ -96,7 +96,7 @@ POST /timer/stop
 # PUT /timer/update/1
 
 {
-    "title": "Updated it 2",
+    "title": "New title",
     "startTime": "2020-07-07 09:30",
     "endTime": "2020-07-07 10:30"
 }
